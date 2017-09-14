@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+	<head>
+	    <link rel="stylesheet" type="text/css" href="./estilo.css"/>
+		<meta charset="utf-8"/>
+		<script src="./js/jquery.min.js"></script>	
+		<script>
+			$(function(){
+			
+				function ocorrencia(palavra){
+					this.palavra=palavra;
+					this.ocorrencia=1;
+					}
+					
+				$(document).ready(function(){
+					var caracteres=140;
+					var ocoArray=[];
+				
+			
+					$("#Nome").keyup(function(){
+						var textodigitado=$(this).val();
+						console.log(textodigitado);
+						if(textodigitado.length < 140){
+							$("#mens").text(140-textodigitado.length)
+						}
+						else{
+							$("#mens").text("Quantidade máxima atingida!")
+							textodigitado=textodigitado.substring(0,140);
+							$("#Nome")
+								.text(textodigitado);
+						}
+						$("#carac")
+								.text(textodigitado.length);
+						
+						var npalaArray=textodigitado.split(" ");
+						var	npala=npalaArray.length;
+					
+							$("#pala")
+								.text(npala)
+						
+						$.each(npalaArray,function(index,obj){
+							var novaoco=true;
+							$.each(ocoArray), function(i, oco){
+								if(palaArray[index]==oco.pala){
+									oco.noco++;
+									novaoco=false;
+								}
+								
+								if(novaoco){
+								ocoArray.push(new ocorrencia(obj));
+							
+								}
+								
+
+							}
+							var maior=0;
+							var comum=null;
+							$.each(ocoArray,function(i,oco){
+								if(oco.noco> maior){
+								comum=oco.pala;
+								maior=oco.noco;
+								}
+							});
+							$("#comum").text(comum);
+						});
+					});
+					
+				});
+			});
+		</script>
+		<title>Trabalho 3º Bimestre - Milena e Sthefany</title>
+	</head>
+	<body>
+		<div id="caixa">
+			<form>
+				<textarea id="Nome" ></textarea>			
+			</form>
+		</div>
+		<table>
+			<tr>
+				<th id="mensagem">Quantidade para uso</th>
+				<th id="caracteres">Número de caracteres</th>
+				<th id="palavras">Número de palavras</th>
+				<th id="ocorrencia">Palavra mais comum</th>
+			</tr>
+			<tr>
+				<td id="mens"></td>
+				<td id="carac"></td>
+				<td id="pala"></td>
+				<td id="comum"></td>
+			</tr>
+		</table>
+	</body>
+</html>
